@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>2.0</version>
+    <date>2015-06-05T11:21:26Z</date>
+    <groups>
+        <group>
+            <name>My Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>1C Habr template</template>
+            <name>1C Habr template</name>
+            <groups>
+                <group>
+                    <name>My Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>1С разное</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>1С Статус обмена</name>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>exchange.status</key>
+                    <delay>0</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>1С разное</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>1Ok / 0Fail</name>
+                    </valuemap>
+                </item>
+                <item>
+                    <name>Перезапуск 1С Обмен с Центром</name>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>exchange.restart</key>
+                    <delay>0</delay>
+                    <history>90</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>1С разное</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>1C Restart</name>
+                    </valuemap>
+                </item>
+            </items>
+            <discovery_rules/>
+            <macros/>
+            <templates/>
+            <screens/>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{1C Habr template:exchange.status.nodata(30m)}=1&{1C Habr template:exchange.status.time()}>084500&{1C Habr template:exchange.status.time()}<200000</expression>
+            <name>{HOST.NAME} 1C Обмена не было более 30 минут</name>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{1C Habr template:exchange.restart.count(1h,100)}>2</expression>
+            <name>{HOST.NAME} 1C перезапуск Обмен с Центром более 3 раз за 1 часа</name>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{1C Habr template:exchange.restart.last(0)}=2</expression>
+            <name>{HOST.NAME} 1C перезапуск Обмен с Центром ошибка!</name>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+    </triggers>
+</zabbix_export>
